@@ -3,16 +3,28 @@ def numbers_in_words(number)
             '12' => 'twelve', '13' => 'thirteen', '14' => 'fourteen', '15' => 'fifteen', '16' => 'sixteen', '17' => 'seventeen', '18' => 'eighteen', '19' => 'nineteen',
             '20' => 'twenty', '30' => 'thirty', '40' => 'forty', '50' => 'fifty', '60' => 'sixty', '70' => 'seventy', '80' => 'eighty', '90' => 'ninety'
           }
-  if words[number]
-    return words[number]
+  hundreds = 0
+  hundreds_math = 0
+  if number.length == 3
+    p hundreds_math = ((number.to_i - (number.to_i % 100)))/100
+    hundreds = words[hundreds_math.to_s]
+  end
+  p hundreds_to_tens = number.to_i - (hundreds_math * 100)
+  if hundreds_to_tens > 0
+   tens = words[(hundreds_to_tens - (hundreds_to_tens % 10)).to_s]
+  p singles = words[(hundreds_to_tens % 10).to_s]
+  end
+  if number.length == 3
+    p singles = words[(hundreds_to_tens % 10).to_s]
+    p hundreds + ' hundred' +' ' + tens + ' ' + singles
+  elsif number.length == 2 && number[1] != "0" && !words[number]
+    tens + ' '+ singles
   else
-    tens = words[(number.to_i - (number.to_i % 10)).to_s]
-    singles = words[(number.to_i % 10).to_s]
-    return tens +' '+ singles
+    words[number]
   end
 end
 
-puts numbers_in_words('20')
+numbers_in_words('100')
 
 
 

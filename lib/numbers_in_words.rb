@@ -3,15 +3,16 @@ def numbers_in_words(number)
             '12' => 'twelve', '13' => 'thirteen', '14' => 'fourteen', '15' => 'fifteen', '16' => 'sixteen', '17' => 'seventeen', '18' => 'eighteen', '19' => 'nineteen',
             '20' => 'twenty', '30' => 'thirty', '40' => 'forty', '50' => 'fifty', '60' => 'sixty', '70' => 'seventy', '80' => 'eighty', '90' => 'ninety'
           }
-
-
-
-  tens = words[(number.to_i - (number.to_i % 10)).to_s]
-  singles = words[(number.to_i % 10).to_s]
-  tens +' '+ singles
+  if words[number]
+    return words[number]
+  else
+    tens = words[(number.to_i - (number.to_i % 10)).to_s]
+    singles = words[(number.to_i % 10).to_s]
+    return tens +' '+ singles
+  end
 end
 
-p numbers_in_words('78')
+puts numbers_in_words('20')
 
 
 
